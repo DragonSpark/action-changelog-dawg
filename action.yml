@@ -16,6 +16,6 @@ inputs:
     description: 'Repository with the releases to query.  Defaults to `$GITHUB_REPOSITORY`.'
     default: ''
     required: false
-runs:
-  using: 'docker'
-  image: 'docker://windows'
+# runs:
+#  using: 'docker'
+#  image: 'docker://windows'
