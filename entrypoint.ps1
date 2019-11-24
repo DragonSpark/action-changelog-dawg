@@ -32,6 +32,7 @@ Start-Process /usr/bin/whereis -ArgumentList "set-output"
 # Get-ChildItem /var/run/docker.sock/
 # 
 # Get-ChildItem /github/workflow
+echo "::warning file=app.js,line=1,col=5::Missing semicolon"
 
 
 
