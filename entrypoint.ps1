@@ -21,9 +21,9 @@ Write-Host "Hello World! $PWD"
 
 echo "Testing"
 
-Start-Process sudo 
+# Start-Process sudo 
 
-Get-ChildItem ../workflow
+Get-ChildItem ../..
 
 #& warning file=app.js,line=1,col=5::Missing semicolon
 
