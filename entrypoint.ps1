@@ -17,8 +17,9 @@ function Generate-Changelog-Dawg {
 }
 
 # Install-Module Poshstache -Force
-$PWD
 dir | Write-Host
-Write-Host "Hello World!"
+Write-Host "Hello World! $PWD"
 dir | Write-Output
-Get-Help
+
+Write-Host "===============+++"
+# Get-Help
