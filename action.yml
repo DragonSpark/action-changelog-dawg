@@ -17,7 +17,6 @@ inputs:
     default: ''
     required: false
 runs:
-  using: windows-2019
-  #image: Dockerfile
-  main: entrypoint.ps1
+  using: docker
+  image: Dockerfile
 #  image: 'docker://windows'
