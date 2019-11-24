@@ -6,7 +6,7 @@ branding:
   color: red
 inputs:
   security_token:
-    description: 'Security context token for the calling repo. Can be passed in using `${{ secrets.GITHUB_TOKEN }}`.'
+    description: 'Security context token for the calling repo. Typically this is `$\{{ secrets.GITHUB_TOKEN }}`.'
     required: true
   owner:
     description: 'The owner of the release repository. Defaults to `$GITHUB_OWNER`.'
