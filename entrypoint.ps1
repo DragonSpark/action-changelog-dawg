@@ -19,7 +19,7 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-echo "Testing: $env:ACTIONS_RUNTIME_URL"
+echo "Testing: $env:ACTIONS_RUNTIME_URL - $env:RUNNER_WORKSPACE - $env:RUNNER_TEMP "
 
 # Start-Process sudo 
 
