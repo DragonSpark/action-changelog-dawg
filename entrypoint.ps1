@@ -21,16 +21,17 @@ Write-Host "Hello World! $PWD"
 
 echo "Testing: $env:ACTIONS_RUNTIME_URL - $env:RUNNER_WORKSPACE - $env:RUNNER_TEMP "
 
-# Start-Process sudo 
+Start-Process /usr/bin/whereis -ArgumentList "whereis"
+Start-Process /usr/bin/whereis -ArgumentList "set-output"
 
-Get-ChildItem ../../usr/bin/
-Get-ChildItem ../../usr/sbin/
-Get-ChildItem /home/runner/work/action-jackson/
-Get-ChildItem /home/runner/work/_temp/
-Get-ChildItem /github/home/
-Get-ChildItem /var/run/docker.sock/
-
-Get-ChildItem /github/workflow
+# Get-ChildItem ../../usr/bin/
+# Get-ChildItem ../../usr/sbin/
+# Get-ChildItem /home/runner/work/action-jackson/
+# Get-ChildItem /home/runner/work/_temp/
+# Get-ChildItem /github/home/
+# Get-ChildItem /var/run/docker.sock/
+# 
+# Get-ChildItem /github/workflow
 
 
 
