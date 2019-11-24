@@ -1,4 +1,4 @@
-FROM windows-2019:latest
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 LABEL "com.github.actions.name"="It's a CHANGELOG, dawg!"
 LABEL "com.github.actions.description"="Generates a single-file CHANGELOG from your repo releases, dawg."
