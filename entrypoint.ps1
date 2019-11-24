@@ -19,10 +19,7 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-if (Get-Command 'set-output' -errorAction SilentlyContinue) {
-    "set-output exists"
-}
-
+& warning file=app.js,line=1,col=5::Missing semicolon
 
 Write-Host "===============+++"
 # Get-Help
