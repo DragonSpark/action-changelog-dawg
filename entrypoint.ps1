@@ -19,7 +19,10 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-Set-Content asdf.txt "Hello World!"
+if (Get-Command 'set-output' -errorAction SilentlyContinue) {
+    "set-output exists"
+}
+
 
 Write-Host "===============+++"
 # Get-Help
