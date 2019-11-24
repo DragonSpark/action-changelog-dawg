@@ -1,4 +1,4 @@
-FROM windows-latest
+FROM windows:latest
 
 LABEL "com.github.actions.name"="It's a CHANGELOG, dawg!"
 LABEL "com.github.actions.description"="Generates a single-file CHANGELOG from your repo releases, dawg."
