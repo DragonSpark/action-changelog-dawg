@@ -10,4 +10,4 @@ jobs:
     steps:
     #- uses: dragonspark/action-changelog-dawg@v1
     - name: Generate a CHANGELOG, dawg!
-      uses: dragonspark/action-changelog-dawg@v1
+      uses: dragonspark/action-changelog-dawg@master
