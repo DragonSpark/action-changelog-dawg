@@ -19,7 +19,11 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-& warning file=app.js,line=1,col=5::Missing semicolon
+echo "Testing"
+
+sudo 
+
+#& warning file=app.js,line=1,col=5::Missing semicolon
 
 Write-Host "===============+++"
 # Get-Help
