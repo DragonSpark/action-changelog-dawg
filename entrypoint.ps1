@@ -10,7 +10,8 @@ function Generate-Changelog-Dawg {
 ##### ``{{ tag_name }}``
 
 {{ body }}
-{{/releases}}"@)
+{{/releases}}
+"@)
 	$response = Invoke-RestMethod https://api.github.com/repos/$Owner/$Repository/releases | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
