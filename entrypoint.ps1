@@ -23,7 +23,14 @@ echo "Testing: $env:ACTIONS_RUNTIME_URL - $env:RUNNER_WORKSPACE - $env:RUNNER_TE
 
 # Start-Process sudo 
 
-Get-ChildItem ../../usr
+Get-ChildItem ../../usr/bin/
+Get-ChildItem ../../usr/sbin/
+Get-ChildItem /home/runner/work/action-jackson/
+Get-ChildItem /home/runner/work/_temp/
+Get-ChildItem /github/home/
+Get-ChildItem /var/run/docker.sock/
+
+Get-ChildItem /github/workflow
 
 
 
