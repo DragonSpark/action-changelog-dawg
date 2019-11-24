@@ -1,0 +1,13 @@
+name: CHANGELOG, Dawg! Testing
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    #- uses: dragonspark/action-changelog-dawg@v1
+    - name: Generate a CHANGELOG, dawg!
+      uses: dragonspark/action-changelog-dawg@v1
