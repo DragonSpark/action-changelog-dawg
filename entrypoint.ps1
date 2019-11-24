@@ -19,11 +19,13 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-echo "Testing"
+echo "Testing: $env:ACTIONS_RUNTIME_URL"
 
 # Start-Process sudo 
 
-Get-ChildItem ../..
+Get-ChildItem ../../usr
+
+
 
 #& warning file=app.js,line=1,col=5::Missing semicolon
 
