@@ -19,8 +19,7 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 Write-Host "Hello World! $PWD"
 
-Get-ChildItem ..\home
-Get-ChildItem ..\workflow
+Set-Content asdf.txt "Hello World!"
 
 Write-Host "===============+++"
 # Get-Help
