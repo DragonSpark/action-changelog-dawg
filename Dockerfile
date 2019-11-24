@@ -10,7 +10,10 @@ LABEL "homepage"="https://blog.dragonspark.us"
 LABEL "maintainer"="Mike-EEE <github.actions+dockerfile@dragonspark.network>"
 
 RUN apt-get update \
-    
+    && apt-get install wget -y \
+    && wget -q https://packages.microsoft.com/config/ubuntu/19.10/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
     && apt-get install -y powershell
 
 ADD entrypoint.ps1 /entrypoint.ps1
