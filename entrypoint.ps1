@@ -22,7 +22,7 @@ function Generate-Changelog-Dawg {
 	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken;
 	
-	Write-Host $temp
+	$temp | ConvertTo-Json | Write-Host
 	
 	#$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	
@@ -49,17 +49,19 @@ if ($Error.Count)
 }
 echo "::set-output name=result::$result"
 #>
-
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
+
+<#
 $uri = "https://api.github.com/repos/$repository/releases"
 Write-Host $uri
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
-$response
+# $response
+#>
 
 "==============================================================="
 
-# Generate-Changelog-Dawg $token $repository "asdf"
+Generate-Changelog-Dawg $token $repository "asdf"
 
 "==============================================================="
 
