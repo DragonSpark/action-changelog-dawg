@@ -55,11 +55,11 @@ $uri = "https://api.github.com/repos/$repository/releases"
 Write-Host $uri
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
-Write-Host $response
+$response
 
 "==============================================================="
 
-Generate-Changelog-Dawg $token $repository ""
+# Generate-Changelog-Dawg $token $repository "asdf"
 
 "==============================================================="
 
