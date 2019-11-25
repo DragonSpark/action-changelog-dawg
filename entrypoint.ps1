@@ -28,4 +28,6 @@ if($lastexitcode -ne 0)
 else
 {
 	echo "::set-output name=result::$result"
+	
+	"Result: $result|"
 }
