@@ -10,6 +10,9 @@ function Generate-Changelog-Dawg {
 		[String]$Template
 	)
 	
+	$uri =  https://api.github.com/repos/$Repository/releases 
+	$uri
+	
 	$response = Invoke-RestMethod https://api.github.com/repos/$Repository/releases -Authentication OAuth -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
@@ -21,15 +24,15 @@ $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
 
 "Before: $result"
-if($lastexitcode -ne 0)
+
+if ($Error.Count > 0)
 {
-	$details = $error[0].InvocationInfo
-	echo "::error file=$($details.ScriptName),line=$($details.ScriptLineNumber),col=$($details.OffsetInLine)::$($error[0])"
+	foreach ($e in $Error)
+	{
+		echo "::error file=$($e.InvocationInfo.ScriptName),line=$($e.InvocationInfo.ScriptLineNumber),col=$($e.InvocationInfo.OffsetInLine)::$($e)"
+	}
 }
 else
 {
 	echo "::set-output name=result::$result"
-	
-	"Result: $result"
 }
-"AFTER!"
