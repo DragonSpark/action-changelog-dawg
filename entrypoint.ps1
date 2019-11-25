@@ -27,12 +27,11 @@ $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPL
 
 if ($Error.Count)
 {
-	"ERORROROROR!!!"
 	foreach ($e in $Error)
 	{
-	Write-Host "WHATUP!!!"
 		echo "::error file=$($e.InvocationInfo.ScriptName),line=$($e.InvocationInfo.ScriptLineNumber),col=$($e.InvocationInfo.OffsetInLine)::$($e)"
 	}
+	exit 1
 }
 else
 {
