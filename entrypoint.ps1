@@ -21,23 +21,10 @@ $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY;
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
 
-$error.Count
-
-"ERROR: $error"
-"GetMember:"
-$error[0].InvocationInfo | gm
-"++++++++++++++++++++++++++"
-
-"Select:"
-$error[0].InvocationInfo | select *.
-"++++++++++++++++++++++++++"
-
 if($lastexitcode -ne 0)
 {
-	# echo "::error file=app.js,line=10,col=15::Something went wrong"
-	# $error[0].TargetObject|select *.
-
-
+	$details = $error[0].InvocationInfo
+	echo "::error file=$details.ScriptName,line=$details.ScriptLineNumber,col=$details.OffsetInLine::$error"
 }
 else
 {
