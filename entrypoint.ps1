@@ -14,8 +14,9 @@ function Generate-Changelog-Dawg {
 
 	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken
 	$query = $response | Where-Object draft -Not | Sort-Object published_at -Descending
+	#$query | ConvertTo-Json | Write-Host
 	$parameters = @{ releases = $query } | ConvertTo-Json;
-	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters
+	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters
 }
 
 Install-Module Poshstache -Force
