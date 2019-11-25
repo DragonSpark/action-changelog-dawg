@@ -17,26 +17,7 @@ function Generate-Changelog-Dawg {
 }
 
 # Install-Module Poshstache -Force
-Write-Host "Hello World! $PWD"
 
-echo "Testing: $env:ACTIONS_RUNTIME_URL - $env:RUNNER_WORKSPACE - $env:RUNNER_TEMP "
-
-Start-Process /usr/bin/whereis -ArgumentList "whereis"
-Start-Process /usr/bin/whereis -ArgumentList "set-output"
-
-# Get-ChildItem ../../usr/bin/
-# Get-ChildItem ../../usr/sbin/
-# Get-ChildItem /home/runner/work/action-jackson/
-# Get-ChildItem /home/runner/work/_temp/
-# Get-ChildItem /github/home/
-# Get-ChildItem /var/run/docker.sock/
-# 
-# Get-ChildItem /github/workflow
-echo "::warning file=app.js,line=1,col=5::Missing semicolon"
-
-
-
-#& warning file=app.js,line=1,col=5::Missing semicolon
-
-Write-Host "===============+++"
-# Get-Help
+$repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
+"Repository: $repository"
+# Generate-Changelog-Dawg $env:GITHUB_REPOSITORY
