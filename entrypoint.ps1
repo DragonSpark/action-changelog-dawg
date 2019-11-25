@@ -19,8 +19,8 @@ function Generate-Changelog-Dawg {
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
 	
-	$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $token;
+	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
+	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken;
 	
 	Write-Host $temp
 	
@@ -32,6 +32,7 @@ function Generate-Changelog-Dawg {
 }
 
 
+<#
 Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
@@ -46,19 +47,28 @@ if ($Error.Count)
 	}
 	exit 1
 }
-
 echo "::set-output name=result::$result"
+#>
+
+$repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
+$uri = "https://api.github.com/repos/$repository/releases"
+Write-Host $uri
+$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
+$response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
+Write-Host $response
+
+"==============================================================="
+
+Generate-Changelog-Dawg $token $repository ""
+
+"==============================================================="
 
 <#
-$repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
+
 $headers = @{ 
 		"authorization" = "Bearer $($env:INPUT_ACCESS_TOKEN)"	
 		# "content-type" = "application/json"
 	};
 	
-$uri = "https://api.github.com/repos/$repository/releases"
-Write-Host $uri
-$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-$response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
-$response
+
 #>
