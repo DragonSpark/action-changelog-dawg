@@ -19,7 +19,8 @@ function Generate-Changelog-Dawg {
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
 	
-	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken;
+	$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
+	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $token;
 	
 	Write-Host $temp
 	
