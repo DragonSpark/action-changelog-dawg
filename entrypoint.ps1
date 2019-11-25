@@ -10,7 +10,7 @@ function Generate-Changelog-Dawg {
 		[String]$Template
 	)
 	$headers = @{
-		Authorization = 'Authorization: token {0}' -f $AccessToken
+		Authorization = 'Authorization: Bearer {0}' -f $AccessToken
 	};
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
