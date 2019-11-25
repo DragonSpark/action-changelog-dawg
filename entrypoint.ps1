@@ -17,7 +17,7 @@ function Generate-Changelog-Dawg {
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
-	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
+	$response = Invoke-RestMethod $uri -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
