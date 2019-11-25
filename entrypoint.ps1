@@ -37,4 +37,4 @@ if ($Error.Count)
 }
 
 $filename = Split-Path $env:INPUT_FILEPATH -Leaf
-echo "::set-output name=result::$filename"
+echo "::set-output name=filename::$filename"
