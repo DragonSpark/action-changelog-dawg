@@ -25,7 +25,7 @@ $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY;
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $content = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
 
-Set-Content $env:INPUT_FILENAME $content
+Set-Content $env:INPUT_FILEPATH $content
 
 if ($Error.Count)
 {
@@ -35,3 +35,6 @@ if ($Error.Count)
 	}
 	exit 1
 }
+
+$filename = Split-Path $env:INPUT_FILEPATH -Leaf
+echo "::set-output name=result::$filename"
