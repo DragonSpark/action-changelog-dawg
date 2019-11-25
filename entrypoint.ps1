@@ -9,33 +9,33 @@ function Generate-Changelog-Dawg {
 		[Parameter(Mandatory=$true)]
 		[String]$Template
 	)
-	<#
+	
 	$headers = @{ 
-		"authorization" = "Bearer $AccessToken"	
+	#	"authorization" = "Bearer $AccessToken"	
 		"content-type" = "application/json"
 	};
-	#>
+	
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
 	
 	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | ForEach-Object { $_ } | ConvertTo-Json;
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken -Headers $headers | ConvertTo-Json
 	
 	$response | Write-Host
 	Write-Host "============"
 	
-	$parameters = @{ releases = $response.value } | ConvertTo-Json
+	# $parameters = @{ releases = $response.value } | ConvertTo-Json
 	
-	$parameters | Write-Host
+	# $parameters | Write-Host
 	
 	#$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	
 	#Write-Host "HELLO??? $($response.value)"
 	
-	$output = ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters;
-	$output | Write-Host
-	return $output
+	# $output = ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters;
+	# $output | Write-Host
+	return $Template
 }
 
 Install-Module Poshstache -Force
