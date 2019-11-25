@@ -1,7 +1,7 @@
 function Generate-Changelog-Dawg {
 	Param(
 		[Parameter(Mandatory=$true)]
-		[String]$AccessToken,
+		[SecureString]$AccessToken,
 	
 		[Parameter(Mandatory=$true)]
 		[String]$Repository,
