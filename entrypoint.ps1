@@ -45,7 +45,7 @@ echo "::set-output name=result::$result"
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $headers = @{ 
 		"authorization" = "Bearer $($env:INPUT_ACCESS_TOKEN)"	
-		"content-type" = "application/json"
+		# "content-type" = "application/json"
 	};
 	
 $uri = "https://api.github.com/repos/$repository/releases"
