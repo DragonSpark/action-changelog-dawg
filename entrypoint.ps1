@@ -18,4 +18,4 @@ Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $INPUT_TEMPLATE
+Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
