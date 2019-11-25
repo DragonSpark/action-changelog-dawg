@@ -12,9 +12,10 @@ function Generate-Changelog-Dawg {
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
 
-	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Where-Object draft -Not | Sort-Object published_at -Descending
-	$response | ConvertTo-Json | Write-Host
-	$parameters = @{ releases = $response } | ConvertTo-Json;
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken
+	$query = $response | Where-Object draft -Not | Sort-Object published_at -Descending
+	$query | ConvertTo-Json | Write-Host
+	$parameters = @{ releases = $query } | ConvertTo-Json;
 	$result = ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters;
 	return $result
 }
