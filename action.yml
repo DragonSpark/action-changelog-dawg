@@ -19,7 +19,7 @@ inputs:
                  https://developer.github.com/v3/repos/releases/
     default: |
              {{#releases}}
-             \# [{{ name }}]({{ html_url }})
+             # [{{ name }}]({{ html_url }})
              > {{ published_at }} UTC
              ##### ``{{ tag_name }}``
              {{ body }}
