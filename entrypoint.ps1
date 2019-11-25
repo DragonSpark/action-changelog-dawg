@@ -20,6 +20,7 @@ $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY;
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
 
+"Before: $lastexitcode"
 if($lastexitcode -ne 0)
 {
 	$details = $error[0].InvocationInfo
@@ -31,3 +32,4 @@ else
 	
 	"Result: $result|"
 }
+"AFTER!"
