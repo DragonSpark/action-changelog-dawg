@@ -12,7 +12,7 @@ function Generate-Changelog-Dawg {
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	ECHO $uri
 	$response = Invoke-RestMethod $uri -Authentication OAuth -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
-	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
+	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
 Install-Module Poshstache -Force
