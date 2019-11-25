@@ -14,7 +14,7 @@ function Generate-Changelog-Dawg {
 
 	# Where-Object {!$_.draft} |	
 	
-	$response = Invoke-RestMethod $uri -Token $AccessToken | Sort-Object published_at -Descending
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending
 	Write-Host "==========================="
 	$response | ConvertTo-Json | Write-Host
 	Write-Host "==========================="
