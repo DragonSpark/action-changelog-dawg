@@ -10,7 +10,7 @@ function Generate-Changelog-Dawg {
 		[String]$Template
 	)
 	
-	$uri =  https://api.github.com/repos/$Repository/releases 
+	$uri = https://api.github.com/repos/$Repository/releases
 	$uri
 	
 	$response = Invoke-RestMethod https://api.github.com/repos/$Repository/releases -Authentication OAuth -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
@@ -23,7 +23,7 @@ $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY;
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
 
-"Before: $result"
+"Before: $result - $Error.Count"
 
 if ($Error.Count > 0)
 {
