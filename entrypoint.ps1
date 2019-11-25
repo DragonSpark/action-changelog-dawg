@@ -20,7 +20,7 @@ Install-Module Poshstache -Force
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
-Write-Host "WHATTAP: $(result.Length)"
+Write-Host "WHATTAP: $($result.Length)"
 if ($Error.Count)
 {
 	foreach ($e in $Error)
