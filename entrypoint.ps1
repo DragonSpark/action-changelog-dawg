@@ -22,15 +22,17 @@ function Generate-Changelog-Dawg {
 	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | ConvertTo-Json | ConvertFrom-Json;
 	
-	$input = @{ releases = $response.value }
+	$parameters = @{ releases = $response.value } | ConvertTo-Json
 	
-	$input.value | ConvertTo-Json | Write-Host
+	$parameters | Write-Host
 	
 	#$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	
 	#Write-Host "HELLO??? $($response.value)"
 	
-	return "Hello World" # ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject ( | ConvertTo-Json)
+	$output = ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters;
+	$output | Write-Host
+	return $output
 }
 
 Install-Module Poshstache -Force
