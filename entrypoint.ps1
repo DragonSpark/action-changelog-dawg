@@ -23,12 +23,14 @@ $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY;
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPLATE
 
-"Before: $result - $Error.Count"
+"Before: $result - $($Error.Count)"
 
 if ($Error.Count > 0)
 {
+	"ERORROROROR!!!"
 	foreach ($e in $Error)
 	{
+	Write-Host "WHATUP!!!"
 		echo "::error file=$($e.InvocationInfo.ScriptName),line=$($e.InvocationInfo.ScriptLineNumber),col=$($e.InvocationInfo.OffsetInLine)::$($e)"
 	}
 }
