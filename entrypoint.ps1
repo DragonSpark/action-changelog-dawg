@@ -10,8 +10,8 @@ function Generate-Changelog-Dawg {
 		[String]$Template
 	)
 	$headers = @{ 
-		"Authorization" = "Bearer $AccessToken"	
-		"Content-type" = "application/json"
+		"authorization" = "Bearer $AccessToken"	
+		"content-type" = "application/json"
 	};
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
@@ -50,5 +50,6 @@ $headers = @{
 	
 $uri = "https://api.github.com/repos/$repository/releases"
 Write-Host $uri
-$response = Invoke-RestMethod $uri -Headers $headers
+$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
+$response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
 $response
