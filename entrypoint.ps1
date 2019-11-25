@@ -19,13 +19,19 @@ function Generate-Changelog-Dawg {
 	return $result
 }
 
-$env:INPUT_TEMPLATE | Write-Host
-
 Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $result = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
+
+"Using Template:" | Write-Host
+$env:INPUT_TEMPLATE | Write-Host
+
+"Result:" | Write-Host
+$result | Write-Host
+
+"====================================" | Write-Host
 
 if ($Error.Count)
 {
