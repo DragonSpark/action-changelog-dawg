@@ -24,9 +24,12 @@ function Generate-Changelog-Dawg {
 	
 	# $response | Write-Host
 	
+	$temp = ConvertTo-Json $response
 	
-	$parameters = @{ releases = $response } | ConvertTo-Json
-	$parameters | Write-Host
+	Write-Host $temp
+	
+	# $parameters = @{ releases = $response } | ConvertTo-Json
+	# $parameters | Write-Host
 	Write-Host "============"
 	
 	
