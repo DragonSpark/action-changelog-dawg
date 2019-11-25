@@ -25,7 +25,7 @@ $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPL
 
 "Before: $result - $($Error.Count)"
 
-if ($Error.Count > 0)
+if ($Error.Count)
 {
 	"ERORROROROR!!!"
 	foreach ($e in $Error)
