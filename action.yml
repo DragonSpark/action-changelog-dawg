@@ -30,10 +30,10 @@ inputs:
              {{/releases}}
     required: false
 outputs:
-  result:
-    description: The contents of the CHANGELOG, dawg!
-#  filename:
-#    description: The name of the file that was saved.
+#  result:
+#    description: The contents of the CHANGELOG, dawg!
+  filename:
+    description: The name of the file that was saved.
     
 runs:
   using: docker
