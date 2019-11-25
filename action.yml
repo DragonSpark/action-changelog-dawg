@@ -25,6 +25,9 @@ inputs:
              {{ body }}
              {{/releases}}
     required: false
+outputs:
+  result:
+    description: String text that contains your entire single-file CHANGELOG, dawg!
 runs:
   using: docker
   image: Dockerfile

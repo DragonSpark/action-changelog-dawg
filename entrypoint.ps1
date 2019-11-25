@@ -10,8 +10,7 @@ function Generate-Changelog-Dawg {
 		[String]$Template
 	)
 	
-	# $response = Invoke-RestMethod https://api.github.com/repos/$Repository/releases -Authentication OAuth -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
-	$response = Invoke-RestMethod https://api.github.com/repos/$Repository/releases  | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json -Authentication OAuth -Token $AccessToken
+	$response = Invoke-RestMethod https://api.github.com/repos/$Repository/releases -Authentication OAuth -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
@@ -28,5 +27,5 @@ if($lastexitcode -ne 0)
 }
 else
 {
-	
+	echo "::set-output name=result::$result"
 }
