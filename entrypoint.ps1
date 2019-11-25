@@ -24,7 +24,12 @@ $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPL
 $error.Count
 
 "ERROR: $error"
+"GetMember:"
 $error[0].InvocationInfo | gm
+"++++++++++++++++++++++++++"
+
+"Select:"
+$error[0].InvocationInfo | select *.
 "++++++++++++++++++++++++++"
 
 if($lastexitcode -ne 0)
