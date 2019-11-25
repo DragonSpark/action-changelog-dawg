@@ -20,9 +20,9 @@ function Generate-Changelog-Dawg {
 	Write-Host $uri
 	
 	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | ConvertTo-Json | ConvertFrom-Json;
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | ForEach-Object { $_ } | ConvertTo-Json;
 	
-	$response | ConvertTo-Json | Write-Host
+	$response | Write-Host
 	Write-Host "============"
 	
 	$parameters = @{ releases = $response.value } | ConvertTo-Json
