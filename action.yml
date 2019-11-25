@@ -8,6 +8,10 @@ inputs:
   access_token:
     description: 'Security context access token for the identity to perform the query. Typically this is `$\{{ secrets.GITHUB_TOKEN }}`.'
     required: true
+  filename:
+    description: The filename to save in the current work directory for the changelog, dawg.
+    required: true
+    default: "./CHANGELOG.md"
   repository:
     description: 'The repository containing the releases to query in the form of `<Owner>/<Name>`.  Defaults to the `GITHUB_REPOSITORY` environment variable if not provided.'
     required: false
@@ -25,9 +29,6 @@ inputs:
              {{ body }}
              {{/releases}}
     required: false
-outputs:
-  result:
-    description: String text that contains your entire single-file CHANGELOG, dawg!
 runs:
   using: docker
   image: Dockerfile

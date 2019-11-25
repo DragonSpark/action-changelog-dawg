@@ -16,23 +16,16 @@ function Generate-Changelog-Dawg {
 	$query = $response | Where-Object draft -Not | Sort-Object published_at -Descending
 	$query | ConvertTo-Json | Write-Host
 	$parameters = @{ releases = $query } | ConvertTo-Json;
-	$result = ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters;
-	return $result
+	ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters
 }
 
 Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-$result = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
+$content = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
 
-"Using Template:" | Write-Host
-$env:INPUT_TEMPLATE | Write-Host
-
-"Result:" | Write-Host
-$result | Write-Host
-
-"====================================" | Write-Host
+Set-Content $env:INPUT_FILENAME $content
 
 if ($Error.Count)
 {
@@ -42,6 +35,3 @@ if ($Error.Count)
 	}
 	exit 1
 }
-"Before==" | Write-Host
-echo "::set-output name=result::$result"
-"After==" | Write-Host
