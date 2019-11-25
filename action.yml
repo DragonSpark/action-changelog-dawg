@@ -5,8 +5,8 @@ branding:
   icon: edit
   color: red
 inputs:
-  security_token:
-    description: 'Security context token for the calling repo. Typically this is `$\{{ secrets.GITHUB_TOKEN }}`.'
+  access_token:
+    description: 'Security context access token for the identity to perform the query. Typically this is `$\{{ secrets.GITHUB_TOKEN }}`.'
     required: true
   repository:
     description: 'The repository containing the releases to query in the form of `<Owner>/<Name>`.  Defaults to the `GITHUB_REPOSITORY` environment variable if not provided.'
