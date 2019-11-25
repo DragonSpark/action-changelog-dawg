@@ -37,5 +37,6 @@ if ($Error.Count)
 }
 
 $filename = Split-Path $env:INPUT_FILEPATH -Leaf
-echo "::set-output name=filename::$filename"
+# echo "::set-output name=filename::$filename"
+echo "::set-output name=result::$result"
 Write-Host "Output: $filename"
