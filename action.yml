@@ -10,7 +10,20 @@ inputs:
     required: true
   repository:
     description: 'The repository containing the releases to query in the form of `<Owner>/<Name>`.  Defaults to the `GITHUB_REPOSITORY` environment variable if not provided.'
-    default: ''
+    required: false
+  template:
+    description: |
+                 Defines the [Mustache](http://mustache.github.io/mustache.5.html) template used to generate the changelog from queried releases.  
+                 
+                 The `releases` property passed to the template is a set of GitHub releases from their API as defined here:
+                 https://developer.github.com/v3/repos/releases/
+    default: |
+             {{#releases}}
+             # [{{ name }}]({{ html_url }})
+             > {{ published_at }} UTC
+             ##### ``{{ tag_name }}``
+             {{ body }}
+             {{/releases}}
     required: false
 runs:
   using: docker
