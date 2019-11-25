@@ -50,8 +50,9 @@ if ($Error.Count)
 echo "::set-output name=result::$result"
 #>
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
-
+$token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 <#
+$repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $uri = "https://api.github.com/repos/$repository/releases"
 Write-Host $uri
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
