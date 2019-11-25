@@ -9,26 +9,28 @@ function Generate-Changelog-Dawg {
 		[Parameter(Mandatory=$true)]
 		[String]$Template
 	)
+	<#
 	$headers = @{ 
 		"authorization" = "Bearer $AccessToken"	
 		"content-type" = "application/json"
 	};
+	#>
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
-	$response = Invoke-RestMethod $uri -Headers $headers | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	
 	Write-Host "HELLO??? $($response.value)"
 	
 	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
-<#
+
 Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-$result = Generate-Changelog-Dawg $env:INPUT_ACCESS_TOKEN $repository $env:INPUT_TEMPLATE
+$result = Generate-Changelog-Dawg $token $repository $env:INPUT_TEMPLATE
 Write-Host "WHATTAP: $($result.Length)"
 if ($Error.Count)
 {
@@ -40,8 +42,8 @@ if ($Error.Count)
 }
 
 echo "::set-output name=result::$result"
-#>
 
+<#
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $headers = @{ 
 		"authorization" = "Bearer $($env:INPUT_ACCESS_TOKEN)"	
@@ -53,3 +55,4 @@ Write-Host $uri
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
 $response = Invoke-RestMethod $uri -Authentication Bearer -Token $token
 $response
+#>
