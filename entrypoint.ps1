@@ -25,10 +25,14 @@ $error.Count
 
 "ERROR: $error"
 
-<#
 if($lastexitcode -ne 0)
 {
-	echo "::error file=app.js,line=10,col=15::Something went wrong"
+	# echo "::error file=app.js,line=10,col=15::Something went wrong"
+	$error[0].TargetObject|select *.
 
-|
-#>
+
+}
+else
+{
+	
+}
