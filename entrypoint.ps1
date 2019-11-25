@@ -24,7 +24,7 @@ $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPL
 if($lastexitcode -ne 0)
 {
 	$details = $error[0].InvocationInfo
-	echo "::error file=$details.ScriptName,line=$details.ScriptLineNumber,col=$details.OffsetInLine::$error"
+	echo "::error file=$($details.ScriptName),line=$($details.ScriptLineNumber),col=$($details.OffsetInLine)::$($error[0])"
 }
 else
 {
