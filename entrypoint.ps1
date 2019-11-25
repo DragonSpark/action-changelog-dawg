@@ -23,6 +23,7 @@ function Generate-Changelog-Dawg {
 	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
+<#
 Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
@@ -39,3 +40,14 @@ if ($Error.Count)
 }
 
 echo "::set-output name=result::$result"
+#>
+
+$headers = @{ 
+		"authorization" = "Bearer $($env:INPUT_ACCESS_TOKEN)"	
+		"content-type" = "application/json"
+	};
+	
+$uri = "https://api.github.com/repos/$Repository/releases"
+Write-Host $uri
+$response = Invoke-RestMethod $uri -Headers $headers
+$response
