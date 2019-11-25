@@ -19,5 +19,6 @@ function Generate-Changelog-Dawg {
 # Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
-"Repository: $repository"
+$temp = [bool]$env:INPUT_SECURITY_TOKEN 
+"Repository: $repository - $temp"
 # Generate-Changelog-Dawg $env:GITHUB_REPOSITORY
