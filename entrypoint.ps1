@@ -9,13 +9,17 @@ function Generate-Changelog-Dawg {
 		[Parameter(Mandatory=$true)]
 		[String]$Template
 	)
-	$headers = @{
-		Authorization = "Bearer $AccessToken"
+	$headers = @{ 
+		"Authorization" = "Bearer $AccessToken"	
+		"Content-type" = "application/json"
 	};
 	
 	$uri = "https://api.github.com/repos/$Repository/releases"
 	Write-Host $uri
 	$response = Invoke-RestMethod $uri -Headers $headers | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
+	
+	Write-Host "HELLO??? $($response.value)"
+	
 	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
 }
 
