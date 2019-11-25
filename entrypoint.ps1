@@ -24,11 +24,13 @@ $result = Generate-Changelog-Dawg $token $env:GITHUB_REPOSITORY $env:INPUT_TEMPL
 $error.Count
 
 "ERROR: $error"
+$error[0].InvocationInfo | gm
+"++++++++++++++++++++++++++"
 
 if($lastexitcode -ne 0)
 {
 	# echo "::error file=app.js,line=10,col=15::Something went wrong"
-	$error[0].TargetObject|select *.
+	# $error[0].TargetObject|select *.
 
 
 }
