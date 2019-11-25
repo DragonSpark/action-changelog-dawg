@@ -20,20 +20,22 @@ function Generate-Changelog-Dawg {
 	Write-Host $uri
 	
 	# $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
-	$temp = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken;
+	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | ConvertTo-Json | ConvertFrom-Json;
 	
-	$temp | ConvertTo-Json | Write-Host
+	$input = @{ releases = $response.value }
+	
+	$input.value | ConvertTo-Json | Write-Host
 	
 	#$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken | Sort-Object published_at -Descending | ConvertTo-Json | ConvertFrom-Json
 	
 	#Write-Host "HELLO??? $($response.value)"
 	
-	return "Hello World" # ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject (@{ releases = $response.value } | ConvertTo-Json)
+	return "Hello World" # ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject ( | ConvertTo-Json)
 }
 
+Install-Module Poshstache -Force
 
 <#
-Install-Module Poshstache -Force
 
 $repository = @{ $true = $env:INPUT_REPOSITORY; $false = $env:GITHUB_REPOSITORY; }[[bool]$env:INPUT_REPOSITORY]
 $token = ConvertTo-SecureString $env:INPUT_ACCESS_TOKEN -AsPlainText -Force
