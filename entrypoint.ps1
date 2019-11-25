@@ -42,4 +42,6 @@ if ($Error.Count)
 	}
 	exit 1
 }
+"Before==" | Write-Host
 echo "::set-output name=result::$result"
+"After==" | Write-Host
