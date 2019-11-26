@@ -1,5 +1,5 @@
 name: 'CHANGELOG Generator, DAWG!'
-description: 'Generates a single-file CHANGELOG from your repository releases, dawg.'
+description: 'Queries the provided repository's releases and generates a single-file CHANGELOG, dawg.'
 author: 'Mike-EEE'
 branding:
   icon: edit
