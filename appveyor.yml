@@ -1,0 +1,14 @@
+image: Visual Studio 2019
+branches:
+  only:
+  - master
+
+# skip_commits:
+#  author: /ExtendedXmlSerializer Automation*/
+  # files:
+  #  - '.github\**\*.*'
+
+install:
+  - ps: |
+        Write-Host "HELLO WORLD!"
+        Get-ChildItem Env: | Where-Object { $_.Name.StartsWith( "APPVEYOR" ) }
