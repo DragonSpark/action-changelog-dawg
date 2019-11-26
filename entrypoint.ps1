@@ -14,7 +14,6 @@ function Generate-Changelog-Dawg {
 
 	$response = Invoke-RestMethod $uri -Authentication Bearer -Token $AccessToken
 	$query = $response | Where-Object draft -Not | Sort-Object published_at -Descending
-	#$query | ConvertTo-Json | Write-Host
 	$parameters = @{ releases = $query } | ConvertTo-Json;
 	return ConvertTo-PoshstacheTemplate -InputString $Template -ParametersObject $parameters
 }
@@ -38,4 +37,3 @@ if ($Error.Count)
 
 $filename = Split-Path $env:INPUT_FILEPATH -Leaf
 echo "::set-output name=filename::$filename"
-# Write-Host "Output: $filename"
