@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 LABEL "com.github.actions.name"="CHANGELOG Generator, DAWG!"
 LABEL "com.github.actions.description"="Queries the provided repository's releases and generates a single-file CHANGELOG, dawg."
